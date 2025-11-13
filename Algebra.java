@@ -164,7 +164,7 @@ public class Algebra {
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
 		int G = 0;
-		while (times(G, G) - x > 0 ) {
+		while (x - times(G, G) > 0 ) {
 			G = plus(G, 1);
 		}
 		return G;
