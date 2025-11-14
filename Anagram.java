@@ -32,13 +32,23 @@ public class Anagram {
 		str2 = preProcess(str2);
 		if (str1.length() == str2.length()) {
 			for(int i = 0; i < str1.length(); i++){
-				for(int j = 0; j < str1.length(); j++){
-					boolean ans = str1.charAt(i) == str2.charAt(j);
+				for(int j = 0; j < str2.length(); j++){
+					if (str1.charAt(i) == str2.charAt(j)) {
+						if (j == str2.length() -1) {
+							str2 = str2.substring(0, j);
+						}
+						else str2 = str2.substring(0, j) + str2.substring(j + 1);
+					}
+				}
+				if (str1.length() == str2.length()) {
+					return false;
 				}
 			}	
-			return true;
+			if (str2 == "") {
+				return true;
+			}
 		}
-		else return false;
+		return false;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
@@ -64,7 +74,7 @@ public class Anagram {
 		String newStr = "";
 		int n = str.length();
 		for(int i = 0; i < n; i++){
-			int j = (int) Math.random() * str.length();
+			int j =  (int)(Math.random() * str.length());
 			char ch = str.charAt(j);
 			newStr += ch;
 			str = str.substring(0, j) + str.substring(j + 1);
